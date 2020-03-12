@@ -129,8 +129,9 @@ function validateGraduate(req, course) {
 
 function validateAddition(req, course) {
 	let destination = null;
-	//if (req.csca.rules.compulsory.codes.some((code) => (code == course.code)) && CS_codes_prefix.some((prefix) => (course.code.startsWith(prefix)))) destination = [];
+	// if (req.csca.rules.compulsory.codes.some((code) => (code == course.code)) && CS_codes_prefix.some((prefix) => (course.code.startsWith(prefix)))) destination = [];
 	if (['物理', '化學', '生物'].some((target_name) => (course.cname.includes(target_name)))) destination = ['雙主修、輔系、學分學程'];
+	else if (course.type == '必修') destination = [];
 	else if (course.code.startsWith('PYY')) destination = [];
 	else if (course.type == '服務學習' || course.type == '通識服務學習') destination = [];
 	else if (course.cname == '藝文賞析教育') destination = [];
