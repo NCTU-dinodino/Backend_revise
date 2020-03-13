@@ -35,6 +35,7 @@ function moveCourses(req) {
 	const mapping = {
 		'專業選修':	'pro_elective',
 		'其他選修':	'elective',
+		'通識':	'general_old',
 		'外語':	'language',
 		'服務學習':	'service',
 		'抵免研究所課程':	'graduate',
@@ -64,8 +65,7 @@ function moveCourses(req) {
 	req.csca.data.moved_records.forEach((moved_record) => {
 		const move_destination = {
 			target:	moved_record.cos_cname,
-			destination:	moved_record.now_pos.startsWith('通識') ? 'general_old' : mapping[moved_record.now_pos],
-			dimension:	moved_record.now_pos.split('-')[1]
+			destination:	mapping[moved_record.now_pos]
 		};
 
 		const original_position = moved_record.orig_pos.startsWith('通識') ? 'general_old' : mapping[moved_record.orig_pos];
@@ -75,9 +75,9 @@ function moveCourses(req) {
 	Object.keys(move_data).forEach((class_title) => {
 		if (move_data[class_title].length == 0) return;
 		move_data[class_title].forEach((record) => {
-			if (class_title == 'general_old' && move_data.destination == 'general_old') {
+			if (move_data.destination == 'general_old') {
 				const course = req.csca.classes[class_title].courses.find((course) => (course.getRepresentingData().cname == record.target));
-				course.dimension = record.dimension;
+				if (course.code.startsWith('MIN')) course.dimension = '自然';
 			} else {
 				const course_idx = req.csca.classes[class_title].courses.findIndex((course) => (course.getRepresentingData().cname == record.target));
 				if (course_idx == -1) return;
