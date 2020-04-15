@@ -11,7 +11,6 @@ var csrfProtection = csrf();
 var helmet = require('helmet');
 var routes = require('./routes')
 
-
 app.use(helmet());
 app.use(session({
     cookieName: "session",
@@ -33,6 +32,11 @@ app.use(bodyParser.urlencoded({
 app.use(csrfProtection);
 app.use(require('./middleware/setCsrf').setCsrf);
 app.use(require('./middleware/setProfile').setProfile);
+
+app.use('/_api/students', require('./routes/students'))
+app.use('/_api/assistants', require('./routes/assistants'))
+app.use('/_api/professors', require('./routes/professors'))
+app.use('/_api/common', require('./routes/common'))
   
 // app.use('/^\/assistants|\/teachers|\/students/', (req, res, next) => {
 //     if(!req.profile)
@@ -66,18 +70,13 @@ app.use(require('./middleware/setProfile').setProfile);
 //     next();
 // });
 
-app.use('/_api/students', require('./routes/students'))
-app.use('/_api/assistants', require('./routes/assistants'))
-app.use('/_api/professors', require('./routes/professors'))
-app.use('/_api/common', require('./routes/common'))
-
 // app.use('/_api', routes)
 
 // test routes
-try{app.use(require('./routes/backend_test/testAPI.js'));}catch(e){}
-try{app.use(require('./routes/backend_test/testAPI_2.js'));}catch(e){}
-try{app.use(require('./routes/backend_test/leodetest.js'));}catch(e){}
-try{app.use(require('./routes/backend_test/testDB.js'));}catch(e){}
+// try{app.use(require('./routes/backend_test/testAPI.js'));}catch(e){}
+// try{app.use(require('./routes/backend_test/testAPI_2.js'));}catch(e){}
+// try{app.use(require('./routes/backend_test/leodetest.js'));}catch(e){}
+// try{app.use(require('./routes/backend_test/testDB.js'));}catch(e){}
 
 
 module.exports = app;

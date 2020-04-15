@@ -1,5 +1,5 @@
-var english_credit_blacklist = require('./../static/additional_condition.js').english_credit_blacklist;
-var CS_course_codes_prefix = require('./../static/additional_condition.js').CS_course_codes_prefix;
+var english_credit_blacklist = require('../static/additional_condition.js').english_credit_blacklist;
+var CS_course_codes_prefix = require('../static/additional_condition.js').CS_course_codes_prefix;
 
 class CourseClass{
 	constructor(title){

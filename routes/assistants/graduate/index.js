@@ -4,23 +4,24 @@ var router = express.Router();
 var csrfProtection = require('csurf')();
 var getStudentId = require('../../../../user/common/handler/getStudentId').getStudentId.studentId;
 
-var syncProfessionalField = require('./../graduate/syncProfessionalField.js');
-var fetchAndParseData = require('./../common/fetchAndParseData.js');
-var initContainers = require('./../graduate/initContainers.js');
-var mergeDuplicates = require('./../graduate/mergeDuplicates.js');
-var classifyCourses = require('./../graduate/classifyCourses.js');
-var handleExceptions = require('./../graduate/handleExceptions.js');
-var followRemainingRules = require('./../graduate/followRemainingRules.js');
-var generateSummary = require('./../graduate/generateSummary.js');
-var getGraduateCheck = require('./../graduate/getGraduateCheck.js');
-var updateGraduateStudentList = require('./../graduate/updateGraduateStudentList.js');
+var syncProfessionalField = require('../../../services/graduate/syncProfessionalField.js');
+var fetchAndParseData = require('../../../services/common/fetchAndParseData.js');
+var initContainers = require('../../../services/graduate/initContainers.js');
+var mergeDuplicates = require('../../../services/graduate/mergeDuplicates.js');
+var classifyCourses = require('../../../services/graduate/classifyCourses.js');
+var handleExceptions = require('../../../services/graduate/handleExceptions.js');
+var followRemainingRules = require('../../../services/graduate/followRemainingRules.js');
+var generateSummary = require('../../../services/graduate/generateSummary.js');
+var getGraduateCheck = require('../../../services/graduate/getGraduateCheck.js');
+var updateGraduateStudentList = require('../../../services/graduate/updateGraduateStudentList.js');
 
 function echo(req, res, next){
 	console.log(require('util').inspect(req.csca, false, null, true));
 	next();
 }
 
-router.post('/assistants/graduate/detail', 
+// prefix of API is /_api/assistants/graduate
+router.post('/detail', 
 	csrfProtection,
 	syncProfessionalField,
 	getStudentId,
@@ -48,7 +49,7 @@ router.post('/assistants/graduate/detail',
 	}
 );
 
-router.get('/assistants/graduate/check',
+router.get('/check',
 	getStudentId,
 	(req, res, next) => {
 		req.csca.query_list = [
@@ -64,7 +65,7 @@ router.get('/assistants/graduate/check',
 	}
 );
 
-router.get('/assistants/graduate/studentListUpdate',
+router.get('/studentListUpdate',
 	getStudentId,
 	(req, res, next) => {
 		req.csca.query_list = [
