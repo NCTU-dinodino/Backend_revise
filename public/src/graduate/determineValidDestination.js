@@ -108,7 +108,8 @@ function validatePE(req, course) {
 
 function validateService(req, course) {
 	let destination = null;
-	if (course.type == '服務學習' || course.type == '通識服務學習') destination = ['服務學習'];
+	//if (course.type == '服務學習' || course.type == '通識服務學習') destination = ['服務學習'];
+	if (course.cname.includes('服務學習')) destination = ['服務學習'];
 	else destination = [];
 	return destination;
 }
