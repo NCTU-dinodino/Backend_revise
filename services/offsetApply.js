@@ -527,7 +527,6 @@ function offsetApplyDelete(req, res, next) {
 // students end
 
 // assistants
-
 /* 助理改變抵免申請單狀態，並寄信通知 */
 function offsetApplySetAgree(req, res, next) {
     if (req.session.profile) {
@@ -908,7 +907,192 @@ function offsetApplyFile(req, res, next) {
         });
     } else res.redirect('/');
 }
+// assistants end
 
+// professors
+function offsetApplySetAgree(req, res, next) {
+    if (req.session.profile) {
+        var teacherId = utils.getPersonId(JSON.parse(req.session.profile));
+        var teacher_email = '';
+        query.ShowUserInfo(teacherId, function (err, result) {
+            if (err) {
+                throw err;
+                return;
+            }
+            if (!result) {
+                return;
+            }
+            result = JSON.parse(result);
+            teacher_email = result[0].email;
+        });
+
+        var state_check = [];
+        var mails = [];
+        for (var i = 0; i < req.body.courses.length; i++) {
+            var data = {
+                timestamp: req.body.courses[i].timestamp,
+                student_id: req.body.courses[i].sid,
+                state: req.body.status,
+                reject_reason: req.body.courses[i].reason,
+                transferto: ""
+            }
+            query.SetOffsetApplyFormAgreeStatus(data, function (err, result) {
+                if (err) {
+                    throw err;
+                    res.redirect('/');
+                }
+                if (!result)
+                    res.redirect('/');
+                else {
+                    result = JSON.parse(result);
+                    state_check.push(result);
+                }
+            });
+            query.ShowUserInfo(req.body.courses[i].sid, function (err, result) {
+                if (err) {
+                    throw err;
+                    return;
+                }
+                if (!result) {
+                    return;
+                }
+                result = JSON.parse(result);
+                mails.push(result[0].email);
+            });
+        }
+        setTimeout(function () {
+            var mailString = '';
+            var nameString = '';
+            for (var j = 0; j < mails.length; j++) {
+                mailString = mailString + mails[j] + ',';
+                //nameString = nameString + info.participants[j] + ',';
+            }
+            var transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: mail_info.auth
+            });
+
+            var options = {
+                //寄件者
+                from: 'nctucsca@gmail.com',
+                //收件者
+                to: mailString,
+                //副本
+                cc: /*req.body.sender_email*/'',
+                //密件副本
+                bcc: '',
+                //主旨
+                subject: '', // Subject line
+                //純文字
+                /*text: 'Hello world2',*/ // plaintext body
+                //嵌入 html 的內文
+                html: '<p>此信件由系統自動發送，請勿直接回信！若有任何疑問，請直接聯絡 老師：' + teacher_email + '，謝謝。</p><br/><p>請進入交大資工線上助理確認申請表狀態：<a href = "https://dinodino.nctu.edu.tw"> 點此進入系統</a></p><br/><br/><p>Best Regards,</p><p>交大資工線上助理 NCTU CSCA</p>'
+                //附件檔案
+                /*attachments: [ {
+                    filename: 'text01.txt',
+                    content: '聯候家上去工的調她者壓工，我笑它外有現，血有到同，民由快的重觀在保導然安作但。護見中城備長結現給都看面家銷先然非會生東一無中；內他的下來最書的從人聲觀說的用去生我，生節他活古視心放十壓心急我我們朋吃，毒素一要溫市歷很爾的房用聽調就層樹院少了紀苦客查標地主務所轉，職計急印形。團著先參那害沒造下至算活現興質美是為使！色社影；得良灣......克卻人過朋天點招？不族落過空出著樣家男，去細大如心發有出離問歡馬找事'
+                }]*/
+            };
+
+            if (req.body.status == 2) {
+                options.subject = '[交大資工線上助理]同意抵免申請郵件通知';
+            }
+            else if (req.body.status == 4) {
+                options.subject = '[交大資工線上助理]不同意抵免申請郵件通知';
+            }
+
+            if (req.body.status == 2 || req.body.status == 4) {
+                transporter.sendMail(options, function (error, info) {
+                    if (error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            req.setAgree = { signal: JSON.parse(state_check[0].info.affectedRows) };
+            if (req.setAgree)
+                next();
+            else
+                return;
+        }, 800);
+    }
+    else
+        res.redirect('/');
+}
+
+
+function offsetApplyFormList(req, res, next) {
+    if (req.session.profile) {
+        var teacherId = res.locals.teacherId;
+        var data1 = { student_id: '0516003' };
+        var data2 = { all_student: true };
+        query.ShowUserOffsetApplyForm(data2, function (err, result) {
+            if (err) {
+                throw err;
+                res.redirect('/');
+            }
+            if (!result)
+                res.redirect('/');
+            else {
+                result = JSON.parse(result);
+                var group = [];
+                for (var i = 0; i < result.length; i++) {
+                    var one = {
+                        "year": result[i].apply_year,
+                        "semester": parseInt(result[i].apply_semester),
+                        "sid": result[i].student_id,
+                        "name": result[i].sname,
+                        "phone": result[i].phone,
+                        "nameA": result[i].cos_cname_old,
+                        "codeA": result[i].cos_code_old,
+                        "department": result[i].cos_dep_old,
+                        "teacher": result[i].cos_tname_old,
+                        "creditA": parseInt(result[i].credit_old),
+                        "nameB": result[i].cos_cname,
+                        "codeB": result[i].cos_code,
+                        "creditB": parseInt(result[i].credit),
+                        "typeB": result[i].cos_type,
+                        "type": parseInt(result[i].offset_type),
+                        "score": result[i].score_old,
+                        "reason": result[i].reason,
+                        "reason_type": result[i].reason_type,
+                        "reject_reason": result[i].reject_reason,
+                        "status": parseInt(result[i].agree),
+                        "previous": result[i].previous == "0" ? false : true,
+                        "date": result[i].timestamp,
+                        "file": result[i].file,
+                        "transferTo": ""
+                    };
+
+                    if (one.type == 0) {
+                        one.nameA = result[i].cos_cname;
+                        one.codeA = result[i].cos_code;
+                        one.creditA = parseInt(result[i].credit);
+                        one.nameB = result[i].cos_cname_old;
+                        one.codeB = result[i].cos_code_old;
+                        one.creditB = parseInt(result[i].credit_old);
+                    }
+                    if (result[i].transferto != null) {
+                        one.transferTo = result[i].transferto;
+                        if (one.transferTo == teacherId) {
+                            group.push(one);
+                        }
+                    }
+                }
+                setTimeout(function () {
+                    req.formList = group;
+                    if (req.formList)
+                        next();
+                    else
+                        return;
+                }, 1000);
+            }
+        });
+    }
+    else
+        res.redirect('/');
+}
+// professors end
 
 module.exports = {
     // students
@@ -923,5 +1107,8 @@ module.exports = {
     offsetApplySetAgree,
     offsetApplyInfo,
     offsetApplyShow,
-    offsetApplyFile
+    offsetApplyFile,
+    // professors
+    offsetApplySetAgree,
+    offsetApplyFormList
 };
