@@ -20,7 +20,7 @@ function echo(req, res, next){
 	next();
 }
 
-// prefix of API is /_api/assistants/graduate
+// prefix of this api: /_api/assistants/graduate
 router.post('/detail', 
 	csrfProtection,
 	syncProfessionalField,
