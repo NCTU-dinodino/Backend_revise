@@ -306,7 +306,7 @@ function handleService(req) {
 		});
 	});*/
 	req.csca.classes.service.courses.filter((course) => (course.cname == '服務學習(一)')).forEach((course) => {
-		if (course.department != '資工系' course.department != '資訊工程學系' && !course.is_dummy)course.getRepresentingData().reason = 'notCS';
+		if (course.department != '資工系' && course.department != '資訊工程學系' && !course.is_dummy)course.getRepresentingData().reason = 'notCS';
 	});
 }
 
