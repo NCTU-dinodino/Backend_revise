@@ -281,7 +281,7 @@ function handleMentorTime(req) {
 	const course_rule = req.csca.rules.compulsory.course_rules.find((rule) => (rule.cname == '導師時間'));
 	course_rule.courses.forEach((course) => {
 		course.real_credit = 0;
-		if (course.department != '資工系' && !course.is_dummy) {
+		if (course.department != '資工系' && course.department != '資訊工程學系' && !course.is_dummy) {
 			Object.keys(course.data).forEach((time_id) => {
 				if (course.data[time_id].reason == '') course.data[time_id].reason = 'notCS';
 			});
@@ -306,7 +306,7 @@ function handleService(req) {
 		});
 	});*/
 	req.csca.classes.service.courses.filter((course) => (course.cname == '服務學習(一)')).forEach((course) => {
-		if (course.department != '資工系' && !course.is_dummy)course.getRepresentingData().reason = 'notCS';
+		if (course.department != '資工系' course.department != '資訊工程學系' && !course.is_dummy)course.getRepresentingData().reason = 'notCS';
 	});
 }
 
