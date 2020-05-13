@@ -46,7 +46,7 @@ function classifyCompulsory(course, req) {
 	if (req.csca.rules.compulsory.codes.some((code) => (course.code == code))) {
 		const representing_data = course.getRepresentingData();
 		if (representing_data.cname.startsWith('微分方程') || representing_data.cname.startsWith('訊號與系統')) {
-			return (course.department == '資工系' || course.department == '電資共同');
+			return (course.department == '資工系' || course.department == '電資共同' || course.department == '電機學院與資訊學院共同課');
 		} else return true;
 	} else return false;
 }
@@ -58,7 +58,7 @@ function classifyService(course) {
 function classifyProElective(course) {
 	const representing_data = course.getRepresentingData();
 	if (representing_data.cname.startsWith('微分方程') || representing_data.cname.startsWith('訊號與系統')) {
-		return (course.department == '資工系' || course.department == '電資共同');
+		return (course.department == '資工系' || course.department == '電資共同' || course.department == '電機學院與資訊學院共同課');
 	} else {
 		return CS_dept_code_prefix.some((prefix) => (course.code.startsWith(prefix)));
 	}
