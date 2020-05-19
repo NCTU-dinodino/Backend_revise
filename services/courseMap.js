@@ -1,4 +1,4 @@
-var query = require('../../../../db/msql');
+var query = require('..db/msql');
 
 /*課程地圖規則*/
 function courseMapRule(req, res, next){

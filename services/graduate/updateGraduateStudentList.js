@@ -1,4 +1,4 @@
-var query = require('./../../../../../db/msql');
+var query = require('../../db/msql');
 
 function updateStudentList(req, res, next) {
 	let new_result = req.csca.summary;

@@ -1,4 +1,4 @@
-var query = require('../../../../db/msql');
+var query = require('../db/msql');
 
 /*列出教授以前指導過的專題*/
 function professorInfoPastResearch(req, res, next) {

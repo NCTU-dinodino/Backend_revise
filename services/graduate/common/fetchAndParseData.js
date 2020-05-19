@@ -1,4 +1,4 @@
-var query = require('./../../../../../db/msql');
+var query = require('../../../db/msql');
 
 var Course = require('../graduate/Container/Course.js');
 var CourseRule = require('../graduate/Container/CourseRule.js');

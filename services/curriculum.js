@@ -1,4 +1,4 @@
-var query = require('../../../../db/msql');
+var query = require('../db/msql');
 
 function curriculumAllCourses(req, res, next) {
     if (req.session.profile) {

@@ -1,4 +1,4 @@
-var query = require('./../../../../../db/msql');
+var query = require('../../db/msql');
 
 function syncProfessionalField(req, res, next){
 	if(req.body.professional_field != null){

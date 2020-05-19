@@ -1,4 +1,4 @@
-var query = require('../../../../db/msql');
+var query = require('../db/msql');
 
 
 function createApplyPeriod(req, res, next) {

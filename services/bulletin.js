@@ -1,4 +1,4 @@
-var query = require('../../../../db/msql');
+var query = require('../db/msql');
 
 function bulletinShow(req, res, next) {
     if (req.session.profile) {

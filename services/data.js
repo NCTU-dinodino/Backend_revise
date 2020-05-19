@@ -1,7 +1,7 @@
 var table = {};
 var fs = require('fs');
 var Readable = require('stream').Readable;
-var query = require('../../../../db/msql');
+var query = require('../db/msql');
 var data_path = "/home/nctuca/dinodino-extension/automation/data";
 var sample_path = "/home/nctuca/dinodino-extension/automation/sample";
 

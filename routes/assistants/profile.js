@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var query = require('../../../db/msql');
+var query = require('../../db/msql');
 // var utils = require('../../../utils');
 var csrf = require('csurf');
 

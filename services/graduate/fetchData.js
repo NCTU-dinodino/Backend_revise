@@ -1,7 +1,7 @@
 var Course = require('./Container/Course.js');
 var CourseRule = require('./Container/CourseRule.js');
 
-var query = require('./../../../../../db/msql');
+var query = require('../../db/msql');
 
 function fetchData(req, res, next){
 	req.csca.student_id = res.locals.studentId;

@@ -1,4 +1,4 @@
-var query = require('../../../../db/msql');
+var query = require('../db/msql');
 
 /*列出推薦選課列表*/
 function recommendCourseList(req, res, next) {

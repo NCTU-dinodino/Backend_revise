@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-var query = require('../../../../db/msql');
+var query = require('../db/msql');
 
 function mailSend(req, res, next) {
     if (req.session.profile) {
