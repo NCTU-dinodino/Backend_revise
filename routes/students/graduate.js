@@ -5,7 +5,7 @@ var csrfProtection = require('csurf')();
 var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 
 var syncProfessionalField = require('../../services/graduate/syncProfessionalField.js');
-var fetchAndParseData = require('../../services/common/fetchAndParseData.js');
+var fetchAndParseData = require('../../services/graduate/common/fetchAndParseData.js');
 var initContainers = require('../../services/graduate/initContainers.js');
 var mergeDuplicates = require('../../services/graduate/mergeDuplicates.js');
 var classifyCourses = require('../../services/graduate/classifyCourses.js');
