@@ -10,7 +10,7 @@ var professorInfo = require('./professorInfo')
 var profile = require('./profile')
 var recommend = require('./recommend')
 var research = require('./research')
-var chatbot = require('./chatbot')
+// var chatbot = require('./chatbot')
 
 // prefix of API: /_api/students
 router.use('/courseMap', courseMap)     // TODO 拔
@@ -20,6 +20,6 @@ router.use('/professorInfo', professorInfo)
 router.use('/profile', profile)
 router.use('/recommend', recommend)
 router.use('/research', research)
-router.use('/chatbot', chatbot)         // TODO
+// router.use('/chatbot', chatbot)         // TODO
 
 module.exports = router
