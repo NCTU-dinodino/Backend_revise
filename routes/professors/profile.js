@@ -5,7 +5,7 @@ var query = require('../../db/msql');
 // var utils = require('../../../utils');
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getTeacherId = require('../common/handler/getTeacherId');
+var getTeacherId = require('../../middleware/getTeacherId');
 
 var TeacherId = getTeacherId.getTeacherId.teacherId;
 

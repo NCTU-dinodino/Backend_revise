@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var getTeacherId = require('../common/handler/getTeacherId');
+var getTeacherId = require('../../middleware/getTeacherId');
 var curriculumService = require('../../services/curriculum');
 
 var csrf = require('csurf');
