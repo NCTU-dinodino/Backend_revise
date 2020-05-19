@@ -4,23 +4,23 @@ var session = require('client-sessions');
 var express = require('express');
 var app = express();
 var utils = require('./utils');
-// var randoms = require('./randomVals');
+var randoms = require('./randomVals');
 var bodyParser = require('body-parser');
 var csrf = require('csurf');
 var csrfProtection = csrf();
 var helmet = require('helmet');
 
 app.use(helmet());
-// app.use(session({
-//     cookieName: "session",
-//     secret: randoms.randomVals.sessionKey,
-//     httpOnly: true,
-//     secure: true,
-//     //duration: 1 * 60 * 1000,
-//     //activeDuration : 5 * 60 * 1000,
-//     duration: 0,
-//     activeDuration : 20 * 60 * 1000,
-// }));
+app.use(session({
+    cookieName: "session",
+    secret: randoms.randomVals.sessionKey,
+    httpOnly: true,
+    secure: true,
+    //duration: 1 * 60 * 1000,
+    //activeDuration : 5 * 60 * 1000,
+    duration: 0,
+    activeDuration : 20 * 60 * 1000,
+}));
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({
@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(csrfProtection);
 app.use(require('./middleware/setCsrf').setCsrf);
-// app.use(require('./middleware/setProfile').setProfile);
+app.use(require('./middleware/setProfile').setProfile);
 
 app.use('/_api/students', require('./routes/students'))
 app.use('/_api/assistants', require('./routes/assistants'))
