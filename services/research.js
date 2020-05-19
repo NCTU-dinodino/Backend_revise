@@ -1,6 +1,6 @@
 var query = require('../db/msql');
 var nodemailer = require('nodemailer');
-var mail_info = require('../../../auth/nctu/mail_info');
+var mail_info = require('../middleware/mail_info');
 
 // students
 function researchList(req, res, next) {

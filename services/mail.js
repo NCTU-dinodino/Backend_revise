@@ -6,7 +6,7 @@ function mailSend(req, res, next) {
 
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
-            auth: require('../../../auth/nctu/mail_info').auth
+            auth: require('../middleware/mail_info').auth
         });
 
         var options = {

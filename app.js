@@ -36,6 +36,7 @@ app.use('/_api/students', require('./routes/students'))
 app.use('/_api/assistants', require('./routes/assistants'))
 app.use('/_api/professors', require('./routes/professors'))
 app.use('/_api/common', require('./routes/common'))
+app.use('/_api/auth', require('./routes/auth'))
   
 // app.use('/^\/assistants|\/teachers|\/students/', (req, res, next) => {
 //     if(!req.profile)
