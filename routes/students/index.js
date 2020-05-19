@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var csrfProtection = require('csurf')();
-var getStudentId = require('../../../../user/common/handler/getStudentId').getStudentId.studentId;
+var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 
 var courseMap = require('./courseMap')
 var graduate = require('./graduate')
@@ -13,7 +13,7 @@ var research = require('./research')
 var chatbot = require('./chatbot')
 
 // prefix of API: /_api/students
-router.use('/courseMap', courseMap)
+router.use('/courseMap', courseMap)     // TODO 拔
 router.use('/graduate', graduate)
 router.use('/offsetApply', offsetApply)
 router.use('/professorInfo', professorInfo)

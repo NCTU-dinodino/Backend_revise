@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getStudentId = require('../common/handler/getStudentId');
+var getStudentId = require('../../middleware/getStudentId');
 var recommendService = require('../../services/recommend');
 
 var StudentId = getStudentId.getStudentId.studentId;

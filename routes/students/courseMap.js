@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var getStudentId = require('../common/handler/getStudentId');
+var getStudentId = require('../../middleware/getStudentId');
 var courseMapService = require('../../services/courseMap');
 
 var StudentId = getStudentId.getStudentId.studentId;

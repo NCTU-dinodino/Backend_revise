@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getStudentId = require('../common/handler/getStudentId');
+var getStudentId = require('../../middleware/getStudentId');
 var researchService = require('../../services/research');
 
 var StudentId = getStudentId.getStudentId.studentId;
@@ -23,6 +23,7 @@ router.post('/edit', csrfProtection, researchEdit, function (req, res) {
     res.send(req.edit);
 });
 
+// 申請更換教授
 router.post('/setReplace', csrfProtection, researchSetReplace, function (req, res) {
     res.send(req.setReplace);
 

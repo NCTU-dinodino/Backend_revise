@@ -2,10 +2,10 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var router = express.Router();
 var query = require('../../../db/msql');
-var utils = require('../../../utils');
+// var utils = require('../../../utils');
 var csrf = require('csurf');
 
-var getStudentId = require('../common/handler/getStudentId');
+var getStudentId = require('../../middleware/getStudentId');
 var StudentId = getStudentId.getStudentId.studentId;
 
 // prefix of this api: /_api/students/profile

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getStudentId = require('../common/handler/getStudentId');
+var getStudentId = require('../../middleware/getStudentId');
 var offsetApplyService = require('../../services/offsetApply');
 
 var StudentId = getStudentId.getStudentId.studentId;
@@ -27,7 +27,7 @@ router.get('/Show', csrfProtection, offsetApplyShow, function (req, res) {
     res.send(req.show);
 });
 
-router.post('/assistants/offsetApply/File', csrfProtection, offsetApplyFile, function (req, res) {
+router.post('/File', csrfProtection, offsetApplyFile, function (req, res) {
     res.send(req.file);
 });
 

@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getStudentId = require('../common/handler/getStudentId');
+var getStudentId = require('../../middleware/getStudentId');
 var professorInfoService = require('../../services/professorInfo');
 
-var StudentId = getStudentId.getStudentId.studentId;
+var getStudentId = require('../../middleware/getStudentId');
 var professorInfoPastResearch = professorInfoService.professorInfoPastResearch;
 var professorInfoList = professorInfoService.professorInfoList;
 var professorInfoGetMentor = professorInfoService.professorInfoGetMentor;

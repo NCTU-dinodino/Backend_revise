@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var query = require('../../../db/msql');
-var utils = require('../../../utils');
+// var utils = require('../../../utils');
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
@@ -13,7 +13,7 @@ router.get('/', csrfProtection, function (req, res) {
 
         var personStatus = JSON.parse(req.session.profile).personStatus;
         //if(personStatus == 'a'){
-        var assistantId = utils.getPersonId(JSON.parse(req.session.profile));
+        // var assistantId = utils.getPersonId(JSON.parse(req.session.profile));
 
         if (!assistantId) {
             //console.log("No Student Id");

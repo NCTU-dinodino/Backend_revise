@@ -1,5 +1,5 @@
 var query = require('../../../../db/msql');
-var utils = require('../../../../utils');
+// var utils = require('../../../../utils');
 var nodemailer = require('nodemailer');
 var mail_info = require('../../../auth/nctu/mail_info');
 
@@ -532,7 +532,7 @@ function offsetApplySetAgree(req, res, next) {
     if (req.session.profile) {
         var assistant_email = '';
         var teacher_email = '';
-        var assistantId = utils.getPersonId(JSON.parse(req.session.profile));
+        var assistantId = '' // utils.getPersonId(JSON.parse(req.session.profile));
         query.ShowUserInfo(assistantId, function (err, result) {
             if (err) {
                 throw err;
@@ -912,7 +912,7 @@ function offsetApplyFile(req, res, next) {
 // professors
 function offsetApplySetAgree(req, res, next) {
     if (req.session.profile) {
-        var teacherId = utils.getPersonId(JSON.parse(req.session.profile));
+        var teacherId = '' // utils.getPersonId(JSON.parse(req.session.profile));
         var teacher_email = '';
         query.ShowUserInfo(teacherId, function (err, result) {
             if (err) {
