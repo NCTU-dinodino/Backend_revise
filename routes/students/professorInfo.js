@@ -2,10 +2,9 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getStudentId = require('../../middleware/getStudentId');
+var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 var professorInfoService = require('../../services/professorInfo');
 
-var getStudentId = require('../../middleware/getStudentId');
 var professorInfoPastResearch = professorInfoService.professorInfoPastResearch;
 var professorInfoList = professorInfoService.professorInfoList;
 var professorInfoGetMentor = professorInfoService.professorInfoGetMentor;
@@ -18,7 +17,7 @@ router.post('/pastResearch', csrfProtection, professorInfoPastResearch, function
 router.get('/list', csrfProtection, professorInfoList, function (req, res) {
     res.send(req.list);
 });
-router.get('/getMentor', StudentId, professorInfoGetMentor, function (req, res) {
+router.get('/getMentor', getStudentId, professorInfoGetMentor, function (req, res) {
     res.send(req.getMentor);
 });
 

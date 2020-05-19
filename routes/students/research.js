@@ -2,10 +2,9 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getStudentId = require('../../middleware/getStudentId');
+var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 var researchService = require('../../services/research');
 
-var StudentId = getStudentId.getStudentId.studentId;
 var researchList = researchService.researchList;
 var researchEdit = researchService.researchEdit;
 var researchSetReplace = researchService.researchSetReplace;
@@ -14,7 +13,7 @@ var researchApplyDelete = researchService.researchApplyDelete;
 var researchShowStudentStatus = researchService.researchShowStudentStatus;
 
 // prefix of this api: /_api/students/research
-router.get('/list', StudentId, researchList, function (req, res) {
+router.get('/list', getStudentId, researchList, function (req, res) {
     res.send(req.list);
 });
 

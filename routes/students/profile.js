@@ -5,11 +5,10 @@ var query = require('../../db/msql');
 // var utils = require('../../../utils');
 var csrf = require('csurf');
 
-var getStudentId = require('../../middleware/getStudentId');
-var StudentId = getStudentId.getStudentId.studentId;
+var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 
 // prefix of this api: /_api/students/profile
-router.get('/', StudentId, function (req, res) {
+router.get('/', getStudentId, function (req, res) {
 
     if (req.session.profile) {
 

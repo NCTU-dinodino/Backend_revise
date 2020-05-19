@@ -2,10 +2,9 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
-var getStudentId = require('../../middleware/getStudentId');
+var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 var offsetApplyService = require('../../services/offsetApply');
 
-var getStudentId = require('../../middleware/getStudentId');
 var offsetApplyList = offsetApplyService.offsetApplyList;
 var offsetCreateCompulsory = offsetApplyService.offsetCreateCompulsory;
 var offsetCreateEnglish = offsetApplyService.offsetCreateEnglish;
@@ -14,32 +13,32 @@ var offsetCreateWaive = offsetApplyService.offsetCreateWaive;
 var offsetApplyEdit = offsetApplyService.offsetApplyEdit;
 var offsetApplyDelete = offsetApplyService.offsetApplyDelete;
 
-router.get('/list', StudentId, offsetApplyList, function (req, res) {
+router.get('/list', getStudentId, offsetApplyList, function (req, res) {
     res.send(req.list);
 });
 
-router.post('/createCompulsory', csrfProtection, StudentId, offsetCreateCompulsory, function (req, res) {
+router.post('/createCompulsory', csrfProtection, getStudentId, offsetCreateCompulsory, function (req, res) {
     res.send(req.createCompulsory);
 
 });
-router.post('/createEnglish', csrfProtection, StudentId, offsetCreateEnglish, function (req, res) {
+router.post('/createEnglish', csrfProtection, getStudentId, offsetCreateEnglish, function (req, res) {
     res.send(req.createEnglish);
 
 });
 
-router.post('/createExempt', csrfProtection, StudentId, offsetCreateExempt, function (req, res) {
+router.post('/createExempt', csrfProtection, getStudentId, offsetCreateExempt, function (req, res) {
     res.send(req.createExempt)
 });
 
-router.post('/createWaive', csrfProtection, StudentId, offsetCreateWaive, function (req, res) {
+router.post('/createWaive', csrfProtection, getStudentId, offsetCreateWaive, function (req, res) {
     res.send(req.createWaive);
 });
 
-router.post('/edit', csrfProtection, StudentId, offsetApplyEdit, function (req, res) {
+router.post('/edit', csrfProtection, getStudentId, offsetApplyEdit, function (req, res) {
     res.send(req.edit);
 });
 
-router.post('/delete', csrfProtection, StudentId, offsetApplyDelete, function (req, res) {
+router.post('/delete', csrfProtection, getStudentId, offsetApplyDelete, function (req, res) {
     res.send(req.delete);
 });
 
