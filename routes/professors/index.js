@@ -4,7 +4,7 @@ var csrfProtection = require('csurf')();
 var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 
 var advisee = require('./advisee')
-var curriculum = require('./curriculum')
+var course = require('./course')
 var offset = require('./offset')
 var profile = require('./profile')
 var research = require('./research')
@@ -12,7 +12,7 @@ var researchApply = require('./researchApply')
 
 // prefix of this api: /_api/professors/
 router.use('/advisee', advisee)
-router.use('/curriculum', curriculum)
+router.use('/course', course)
 router.use('/offset', offset)
 router.use('/profile', profile)
 router.use('/research', research)

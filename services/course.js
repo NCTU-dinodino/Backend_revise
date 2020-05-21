@@ -1,6 +1,6 @@
 var query = require('../db/msql');
 
-function curriculumAllCourses(req, res, next) {
+function allCourse(req, res, next) {
     if (req.session.profile) {
 
         var teacherId = res.locals.teacherId;
@@ -37,7 +37,7 @@ function curriculumAllCourses(req, res, next) {
 
 }
 
-function curriculumScoreInterval(req, res, next) {
+function scoreInterval(req, res, next) {
     if (req.session.profile) {
         var cos_code = req.body.cos_code;
         var unique_id = req.body.unique_id;
@@ -73,7 +73,7 @@ function curriculumScoreInterval(req, res, next) {
         res.redirect('/');
 }
 
-function curriculumScoreDetail(req, res, next) {
+function scoreDetail(req, res, next) {
     if (req.session.profile) {
         var cos_code = req.body.cos_code;
         var unique_id = req.body.unique_id;
@@ -109,7 +109,7 @@ function curriculumScoreDetail(req, res, next) {
 }
 
 module.exports = {
-    curriculumAllCourses,
-    curriculumScoreInterval,
-    curriculumScoreDetail
+    allCourse,
+    scoreInterval,
+    scoreDetail
 }
