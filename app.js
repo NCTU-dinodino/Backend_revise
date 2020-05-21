@@ -32,6 +32,7 @@ app.use(csrfProtection);
 app.use(require('./middleware/setCsrf').setCsrf);
 app.use(require('./middleware/setProfile').setProfile);
 
+app.use((req, res, next) => { req.csca = {}; next(); });
 app.use('/_api/students', require('./routes/students'))
 app.use('/_api/assistants', require('./routes/assistants'))
 app.use('/_api/professors', require('./routes/professors'))
