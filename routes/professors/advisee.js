@@ -11,15 +11,15 @@ var adviseeList = adviseeService.adviseeList;
 var adviseePersonalInfo = adviseeService.adviseePersonalInfo;
 
 // prefix of this api: /_api/professors/advisee
-router.post('/semesterGradeList', csrfProtection, adviseeSemesterGradeList, function (req, res) {
+router.post('/semesterScoreList', csrfProtection, adviseeSemesterGradeList, function (req, res) {
     res.send(req.semesterGradeList);
 });
 
-router.get('/list', TeacherId, adviseeList, function (req, res) {
+router.get('/studentList', TeacherId, adviseeList, function (req, res) {
     res.send(req.list);
 });
 
-router.post('/personalInfo', csrfProtection, adviseePersonalInfo, function (req, res) {
+router.post('/studentInfo', csrfProtection, adviseePersonalInfo, function (req, res) {
     res.send(req.personalInfo);
 });
 
