@@ -5,7 +5,7 @@ var getStudentId = require('../../middleware/getStudentId').getStudentId.student
 
 var advisee = require('./advisee')
 var curriculum = require('./curriculum')
-var offsetApply = require('./offsetApply')
+var offset = require('./offset')
 var profile = require('./profile')
 var research = require('./research')
 var researchApply = require('./researchApply')
@@ -13,7 +13,7 @@ var researchApply = require('./researchApply')
 // prefix of this api: /_api/professors/
 router.use('/advisee', advisee)
 router.use('/curriculum', curriculum)
-router.use('/offsetApply', offsetApply)
+router.use('/offset', offset)
 router.use('/profile', profile)
 router.use('/research', research)
 router.use('/researchApply', researchApply)

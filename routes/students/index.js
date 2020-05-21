@@ -5,8 +5,8 @@ var getStudentId = require('../../middleware/getStudentId').getStudentId.student
 
 var courseMap = require('./courseMap')
 var graduation = require('./graduation')
-var offsetApply = require('./offsetApply')
-var professorInfo = require('./professorInfo')
+var offset = require('./offset')
+var professor = require('./professor')
 var profile = require('./profile')
 var recommend = require('./recommend')
 var research = require('./research')
@@ -15,8 +15,8 @@ var research = require('./research')
 // prefix of API: /_api/students
 router.use('/courseMap', courseMap)     // TODO 拔
 router.use('/graduation', graduation)
-router.use('/offsetApply', offsetApply)
-router.use('/professorInfo', professorInfo)
+router.use('/offset', offset)
+router.use('/professor', professor)
 router.use('/profile', profile)
 router.use('/recommend', recommend)
 router.use('/research', research)

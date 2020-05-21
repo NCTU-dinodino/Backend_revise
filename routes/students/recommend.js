@@ -14,7 +14,7 @@ router.get('/courseList', getStudentId, recommendCourseList, function (req, res)
     res.send(req.courseList);
 });
 
-router.post('/setStar', csrfProtection, recommendSetStar, function (req, res) {
+router.post('/rating', csrfProtection, recommendSetStar, function (req, res) {
     res.send(req.setStar);
 
 });
