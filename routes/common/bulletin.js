@@ -16,7 +16,7 @@ router.get('/', csrfProtection, bulletinShow, function (req, res) {
 })
 
 /*新增公告*/
-router.post('/bulletin', csrfProtection, bulletinCreate, function (req, res) {
+router.post('/', csrfProtection, bulletinCreate, function (req, res) {
     res.status(req.signal).end()
 })
 

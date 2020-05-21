@@ -4,16 +4,16 @@ var router = express.Router();
 var csrfProtection = require('csurf')();
 var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 
-var syncProfessionalField = require('../../services/graduate/syncProfessionalField.js');
-var fetchAndParseData = require('../../services/graduate/common/fetchAndParseData.js');
-var initContainers = require('../../services/graduate/initContainers.js');
-var mergeDuplicates = require('../../services/graduate/mergeDuplicates.js');
-var classifyCourses = require('../../services/graduate/classifyCourses.js');
-var handleExceptions = require('../../services/graduate/handleExceptions.js');
-var followRemainingRules = require('../../services/graduate/followRemainingRules.js');
-var generateSummary = require('../../services/graduate/generateSummary.js');
-var getGraduateCheck = require('../../services/graduate/getGraduateCheck.js');
-var updateGraduateStudentList = require('../../services/graduate/updateGraduateStudentList.js');
+var syncProfessionalField = require('../../services/graduation/syncProfessionalField.js');
+var fetchAndParseData = require('../../services/graduation/common/fetchAndParseData.js');
+var initContainers = require('../../services/graduation/initContainers.js');
+var mergeDuplicates = require('../../services/graduation/mergeDuplicates.js');
+var classifyCourses = require('../../services/graduation/classifyCourses.js');
+var handleExceptions = require('../../services/graduation/handleExceptions.js');
+var followRemainingRules = require('../../services/graduation/followRemainingRules.js');
+var generateSummary = require('../../services/graduation/generateSummary.js');
+var getGraduateCheck = require('../../services/graduation/getGraduateCheck.js');
+var updateGraduateStudentList = require('../../services/graduation/updateGraduateStudentList.js');
 
 function echo(req, res, next){
 	console.log(require('util').inspect(req.csca, false, null, true));

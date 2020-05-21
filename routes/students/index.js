@@ -4,7 +4,7 @@ var csrfProtection = require('csurf')();
 var getStudentId = require('../../middleware/getStudentId').getStudentId.studentId;
 
 var courseMap = require('./courseMap')
-var graduate = require('./graduate')
+var graduation = require('./graduation')
 var offsetApply = require('./offsetApply')
 var professorInfo = require('./professorInfo')
 var profile = require('./profile')
@@ -14,7 +14,7 @@ var research = require('./research')
 
 // prefix of API: /_api/students
 router.use('/courseMap', courseMap)     // TODO 拔
-router.use('/graduate', graduate)
+router.use('/graduation', graduation)
 router.use('/offsetApply', offsetApply)
 router.use('/professorInfo', professorInfo)
 router.use('/profile', profile)
