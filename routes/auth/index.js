@@ -14,7 +14,7 @@ router.get('/Nctu', function (req, res) {
     res.redirect('https://id.nctu.edu.tw/o/authorize/?client_id=' + methods.oAuthNctu.client_id + '&response_type=code&scope=profile%20name');
 });
 
-router.get('/callback', getCode, getToken, getProfile, redirectAfterAuth, redirectPath);
+router.get('/Nctu/callback', getCode, getToken, getProfile, redirectAfterAuth, redirectPath);
 
 router.get('/logout', function (req, res) {
     req.session.destroy((err) => {
