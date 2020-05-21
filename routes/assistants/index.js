@@ -5,7 +5,7 @@ var getStudentId = require('../../middleware/getStudentId').getStudentId.student
 
 var advisee = require('./advisee')
 var graduation = require('./graduation')
-var offsetApply = require('./offset')
+var offset = require('./offset')
 var profile = require('./profile')
 var research = require('./research')
 
