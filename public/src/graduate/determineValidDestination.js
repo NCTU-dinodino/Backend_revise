@@ -75,6 +75,8 @@ function validateElective(req, course) {
 
 	if (course.type == '軍訓' || course.code.startsWith('PYY') || course.cname == '藝文賞析教育' || course.code.startsWith('GEC') || course.code.startsWith('CGE') || course.code.startsWith('MIN') || course.cname.includes('服務學習')) destination = [];
 
+	if (course.code.startsWith('MIN') && req.csca.student_id.substring(0, 2) != '05') destination = ['其他選修'];
+
 	return destination;
 }
 

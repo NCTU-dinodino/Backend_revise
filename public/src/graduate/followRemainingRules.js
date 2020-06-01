@@ -39,7 +39,8 @@ function moveCourses(req) {
 		'外語':	'language',
 		'服務學習':	'service',
 		'抵免研究所課程':	'graduate',
-		'雙主修、輔系、學分學程':	'addition'
+		'雙主修、輔系、學分學程':	'addition',
+		'其他不計入畢業學分':	'uncount'
 	};
 
 	const move_data = {
@@ -49,7 +50,8 @@ function moveCourses(req) {
 		general_old:	[],
 		service:	[],
 		graduate:	[],
-		addition:	[]
+		addition:	[],
+		uncount:	[]
 	};
 
 	const move_results = {
@@ -59,7 +61,8 @@ function moveCourses(req) {
 		general_old:	[],
 		service:	[],
 		graduate:	[],
-		addition:	[]
+		addition:	[],
+		uncount:	[]
 	};
 
 	req.csca.data.moved_records.forEach((moved_record) => {
