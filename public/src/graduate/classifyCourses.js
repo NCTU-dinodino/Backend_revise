@@ -19,10 +19,10 @@ function classifyCourses(req, res, next) {
 
 function classifyCoursesByDefault(req) {
 	const class_list = [
+		{'class': 'uncount', 	valid: classifyUncount },
 		{'class': 'compulsory', 	valid: classifyCompulsory},
 		{'class': 'service', 		valid: classifyService},
 		{'class': 'pro_elective', 	valid: classifyProElective},
-		{'class': 'uncount', 		valid: classifyUncount},
 		{'class': 'language', 		valid: classifyLanguage},
 		{'class': 'PE',			valid: classifyPE},
 		{'class': 'art', 		valid: classifyArt},
