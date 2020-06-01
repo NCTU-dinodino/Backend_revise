@@ -49,7 +49,8 @@ function moveCourses(req) {
 		general_old:	[],
 		service:	[],
 		graduate:	[],
-		addition:	[]
+		addition:	[],
+		uncount:	[]
 	};
 
 	const move_results = {
@@ -59,7 +60,8 @@ function moveCourses(req) {
 		general_old:	[],
 		service:	[],
 		graduate:	[],
-		addition:	[]
+		addition:	[],
+		uncount:	[]
 	};
 
 	req.csca.data.moved_records.forEach((moved_record) => {
