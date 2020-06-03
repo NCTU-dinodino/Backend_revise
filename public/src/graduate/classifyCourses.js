@@ -223,7 +223,7 @@ function handlePCB(req) {
 	const PCB1 = req.csca.rules.compulsory.course_rules.find((rule) => (rule.cname == '物化生三選一(一)'));
 	const PCB2 = req.csca.rules.compulsory.course_rules.find((rule) => (rule.cname == '物化生三選一(二)'));
 
-	if (PCB1.ext.physic.length && PCB2.ext.physic.length) {
+    if (PCB1.ext.physic.length && PCB2.ext.physic.length) {
 		PCB1.courses = [PCB1.ext.physic[0]];
 		PCB2.courses = [PCB2.ext.physic[0]];
 
@@ -233,21 +233,33 @@ function handlePCB(req) {
 		// One credit of physic can be move to pro_elective
 		let extra_credit_course;
 
-		PCB1.courses[0].real_credit = 3;
+		let is_current = false;
+		if (PCB1.courses[0].real_credit == 0){
+			is_current = true;
+		}
+		
+		PCB1.courses[0].real_credit = is_current ? 0 : 3;
+
 		extra_credit_course = Object.assign(new Course(), PCB1.courses[0]);
 		// extra_credit_course = PCB1.courses[0].copy();
 		// extra_credit_course.code += '_one';
 		extra_credit_course.code += '_one';
-		extra_credit_course.real_credit = 1;
+		extra_credit_course.real_credit = is_current ? 0 : 1;
 		extra_credit_course.moved = true;
 		req.csca.classes.pro_elective.courses.push(extra_credit_course);
 
-		PCB2.courses[0].real_credit = 3;
+		is_current = false;
+		if (PCB2.courses[0].real_credit == 0){
+			is_current = true;
+		}
+		
+		PCB2.courses[0].real_credit = is_current ? 0 : 3;
+		
 		extra_credit_course = Object.assign(new Course(), PCB2.courses[0]);
 		// extra_credit_course = PCB2.courses[0].copy();
 		// extra_credit_course.code += '_one';
 		extra_credit_course.code += '_one';
-		extra_credit_course.real_credit = 1;
+		extra_credit_course.real_credit = is_current ? 0 : 1;
 		extra_credit_course.moved = true;
 		req.csca.classes.pro_elective.courses.push(extra_credit_course);
 	} else if (PCB1.ext.chemistry.length && PCB2.ext.chemistry.length) {
