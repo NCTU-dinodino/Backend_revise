@@ -22,8 +22,8 @@ function echo(req, res, next) {
 
 router.post('/assistants/graduate/detail',
 	csrfProtection,
-	syncProfessionalField,
 	getStudentId,
+	syncProfessionalField,
 	(req, res, next) => {
 		req.csca.query_list = [
 			{func_name: 'ShowUserAllScore', 	container_name: 'user_all_score',	syntax: req.csca.student_id},
