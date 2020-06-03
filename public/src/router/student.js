@@ -23,8 +23,8 @@ function echo(req, res, next) {
 
 router.post('/students/graduate/detail',
 	csrfProtection,
-	syncProfessionalField,
 	getStudentId,
+	syncProfessionalField,
 	(req, res, next) => {
 		req.csca.query_list = [
 			{func_name: 'ShowUserAllScore', 	container_name: 'user_all_score',	syntax: req.csca.student_id},
@@ -89,8 +89,8 @@ router.get('/students/graduate/check',
 
 router.post('/students/graduate/moveCourse',
 	csrfProtection,
-	syncProfessionalField,
 	getStudentId,
+	syncProfessionalField,
 	(req, res, next) => {
 		req.csca.query_list = [
 			{func_name: 'ShowUserAllScore', 	container_name: 'user_all_score',	syntax: req.csca.student_id},
