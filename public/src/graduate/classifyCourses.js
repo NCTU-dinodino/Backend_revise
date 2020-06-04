@@ -21,7 +21,6 @@ function classifyCoursesByDefault(req) {
 	const class_list = [
 		{'class': 'uncount', 	valid: classifyUncount },
 		{'class': 'compulsory', 	valid: classifyCompulsory},
-		{'class': 'service', 		valid: classifyService},
 		{'class': 'pro_elective', 	valid: classifyProElective},
 		{'class': 'language', 		valid: classifyLanguage},
 		{'class': 'PE',			valid: classifyPE},
@@ -32,11 +31,24 @@ function classifyCoursesByDefault(req) {
 		{'class': 'addition', 		valid: classifyAddition}
 	];
 
+	const class_list_allow_duplicants = [
+		{'class': 'service', 		valid: classifyService}
+	];
+
 	Object.values(req.csca.courses).forEach((course) => {
 		for (let i = 0; i < class_list.length; i++) {
 			if (class_list[i].valid(course, req)) {
 				req.csca.classes[class_list[i]['class']].courses.push(course);
 				break;
+			}
+		}
+	});
+
+	// Handle service as an exception.
+	Object.values(req.csca.courses).forEach((course) => {
+		for (let i = 0; i < class_list_allow_duplicants.length; i++) {
+			if (class_list_allow_duplicants[i].valid(course, req)) {
+				req.csca.classes[class_list_allow_duplicants[i]['class']].courses.push(course);
 			}
 		}
 	});

@@ -3,6 +3,7 @@ var Course = require('./Container/Course.js');
 function followRemainingRules(req, res, next) {
 	handleExcessiveProElective(req);
 	moveCourses(req);
+	zeroServiceCredit(req);
 	handleGeneral(req);
 
 	next();
@@ -29,6 +30,12 @@ function handleExcessiveProElective(req) {
 			req.csca.classes.elective.courses.push(three_credit_course);
 		}
 	}
+}
+
+function zeroServiceCredit(req){
+	req.csca.classes.service.courses.forEach((course) => {
+		course.real_credit = 0;
+	});
 }
 
 function moveCourses(req) {
