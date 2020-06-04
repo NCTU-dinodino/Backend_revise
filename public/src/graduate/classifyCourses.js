@@ -354,7 +354,7 @@ function handleLanguage(req) {
 				const representing_data = course.getRepresentingData();
 				if (representing_data.cname == '大一英文（一）')freshman_one = course;
 				else if (representing_data.cname == '大一英文（二）')freshman_two = course;
-				else if (representing_data.cname.includes('英文'))advanced.push(course);
+				else if (representing_data.cname.includes('英'))advanced.push(course);
 				else other_language.push(course);
 			});
 			if (!freshman_one) freshman_one = req.csca.rules.language.freshman_one.createEmptyCourse();
