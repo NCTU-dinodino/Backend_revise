@@ -21,12 +21,12 @@ function classifyCoursesByDefault(req) {
 	const class_list = [
 		{'class': 'uncount', 	valid: classifyUncount },
 		{'class': 'compulsory', 	valid: classifyCompulsory},
-		{'class': 'service', 		valid: classifyService},
 		{'class': 'pro_elective', 	valid: classifyProElective},
 		{'class': 'language', 		valid: classifyLanguage},
 		{'class': 'PE',			valid: classifyPE},
 		{'class': 'art', 		valid: classifyArt},
 		{'class': 'general_old',	valid: classifyGeneral},
+		{'class': 'service', 		valid: classifyService},
 		{'class': 'elective', 		valid: classifyElective},
 		{'class': 'graduate', 		valid: classifyGraduate},
 		{'class': 'addition', 		valid: classifyAddition}
