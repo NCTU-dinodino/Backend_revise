@@ -34,7 +34,7 @@ class Course {
 			reason:	''
 		};
 
-		if (!this.has_passed) this.data[time_id].reason = 'now';
+		if (data_type == 'now') this.data[time_id].reason = 'now';
 		else if (raw_course.offset_type == '抵免') this.data[time_id].reason = 'free1';
 		else if (raw_course.offset_type == '免修') this.data[time_id].reason = 'free2';
 	}
