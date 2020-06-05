@@ -6,16 +6,16 @@ class Course {
 		this.brief = raw_course.brief;
 		this.brief_new = raw_course.brief_new;
 		this.original_credit = parseFloat(raw_course.cos_credit);
-		this.real_credit = raw_course.year ? 0 : this.original_credit;
-		this.moved = false;
 		this.has_passed = (data_type == 'passed');
+		this.real_credit = !this.has_passed ? 0 : this.original_credit;
+		this.moved = false;
 		this.dimension = null;
 		this.department = raw_course.cos_dep;
 		this.is_dummy = (data_type == 'dummy');
 
 		this.data = {};
 
-		const year = (raw_course.cos_year || raw_course.year);
+		const year = raw_course.cos_year;
 		const semester = raw_course.semester;
 		const time_id = (data_type == 'dummy') ? 'dummy' : year + '-' + semester;
 
@@ -34,7 +34,7 @@ class Course {
 			reason:	''
 		};
 
-		if (raw_course.year) this.data[time_id].reason = 'now';
+		if (!this.has_passed) this.data[time_id].reason = 'now';
 		else if (raw_course.offset_type == '抵免') this.data[time_id].reason = 'free1';
 		else if (raw_course.offset_type == '免修') this.data[time_id].reason = 'free2';
 	}
