@@ -21,7 +21,7 @@ router.get('/', getStudentId, function (req, res) {
                 //////console.log("No Student Id");
                 return;
             }
-            query.ShowUserInfo(getStudentId, function (err, result) {
+            query.ShowUserInfo(studentId, function (err, result) {
                 if (err) {
                     //////console.log("Can't find student");
                     throw err;

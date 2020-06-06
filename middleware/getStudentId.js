@@ -1,17 +1,14 @@
-// var utils = require('../../../../utils');
+var utils = require('../utils');
 var getStudentId = {};
 
 getStudentId.studentId = function (req, res, next) {
 
-    // res.locals.studentId = '0516016';
-    // next();
-
     if (req.session.profile) {
-        let checkPage = req.originalUrl;
-        let checkIndex = checkPage.indexOf("/", 1);
+        let checkIndexStart = checkPage.indexOf("/", 2);
+        let checkIndexEnd = checkPage.indexOf("/", checkIndexStart + 1);
 
-        // start from 1 to find the second /
-        checkPage = checkPage.substring(1, checkIndex);
+        // skip _api to get the url of students or assistants
+        checkPage = checkPage.substring(checkIndexStart + 1, checkIndexEnd);
 
         // get students or assistants
         if (checkPage === "students") {
