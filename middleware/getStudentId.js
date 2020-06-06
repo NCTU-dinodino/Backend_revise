@@ -4,6 +4,7 @@ var getStudentId = {};
 getStudentId.studentId = function (req, res, next) {
 
     if (req.session.profile) {
+        let checkPage = req.originalUrl;
         let checkIndexStart = checkPage.indexOf("/", 2);
         let checkIndexEnd = checkPage.indexOf("/", checkIndexStart + 1);
 
