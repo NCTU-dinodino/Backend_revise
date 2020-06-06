@@ -68,6 +68,7 @@ function classifyService(course) {
 }
 
 function classifyProElective(course) {
+	if (course.getRepresentingData().cname.includes('服務學習')) return false;
 	const representing_data = course.getRepresentingData();
 	if (representing_data.cname.startsWith('微分方程') || representing_data.cname.startsWith('訊號與系統')) {
 		return (course.department == '資工系' || course.department == '電資共同' || course.department == '電機學院與資訊學院共同課');
@@ -102,6 +103,7 @@ function classifyGeneral(course) {
 }
 
 function classifyElective(course) {
+	if (course.getRepresentingData().cname.includes('服務學習')) return false;
 	if (course.code.startsWith('GEC') || course.code.startsWith('CGE')) return false;
 	if (course.code.startsWith('MIN')) return false;
 	if (course.getRepresentingData().cname.includes('教學實務')) return false;
