@@ -36,7 +36,7 @@ async function parseDataInParallel(req) {
 	const funcs = [
 		parseTakenCourses,
 		parseOnCourse,
-		parseOffsetCourse,
+		//parseOffsetCourse,
 		parseMovedRecords,
 		parseUserInfo,
 		parseCompulsoryRules,
@@ -65,11 +65,11 @@ function parseOnCourse(req) {
 	req.csca.data.on_courses = req.csca.raw_data.user_on_cos.map((course) => (new Course(course, 'now')));
 }
 
-function parseOffsetCourse(req) {
+/*function parseOffsetCourse(req) {
 	if (!req.csca.raw_data.user_offset) return;
 	if (!req.csca.data)req.csca.data = {};
 	req.csca.data.offset_courses = req.csca.raw_data.user_offset;
-}
+}*/
 
 function parseMovedRecords(req) {
 	if (!req.csca.raw_data.cos_motion_locate) return;

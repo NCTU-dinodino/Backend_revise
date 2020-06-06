@@ -111,7 +111,7 @@ function handleGeneral(req) {
 	});
 
 	req.csca.classes.general_new.courses.forEach((course) => {
-		course.dimension = course.dimension || course.brief_new.split('(')[0];
+		course.dimension = course.dimension || course.brief_new;
 	});
 }
 
