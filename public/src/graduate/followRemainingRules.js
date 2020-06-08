@@ -119,8 +119,8 @@ function handleGeneral(req) {
 function zeroOffsetCredit(req) {
 	let OOP = null, data_structure = null;
 	req.csca.classes.compulsory.courses.forEach(course => {
-		if (course.representingData().cname == '物件導向程式設計') OOP = course;
-		if (course.representingData().cname == '資料結構') data_structure = course
+		if (course.getRepresentingData().cname == '物件導向程式設計') OOP = course;
+		if (course.getRepresentingData().cname == '資料結構') data_structure = course
 	});
 
 	if (OOP != null && data_structure != null) data_structure.real_credit = 0;
