@@ -1,4 +1,4 @@
-var merge_exceptions = require('./static/additional_conditions.js').merge_exceptions;
+var merge_exceptions = require('./static/additional_condition.js').merge_exceptions;
 
 function mergeDuplicate(req, res, next) {
 	req.csca.data.taken_courses.forEach((course) => {
