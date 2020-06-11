@@ -91,11 +91,11 @@ function classifyLanguage(course) {
 }
 
 function classifyPE(course) {
-	return course.brief.includes('體育');
+	return course.brief.includes('體育') || course.type.includes('體育');
 }
 
 function classifyArt(course) {
-	return course.brief.includes('藝文賞析');
+	return course.brief.includes('藝文賞析') || course.getRepresentingData().cname.includes('藝文賞析');
 }
 
 function classifyGeneral(course) {
