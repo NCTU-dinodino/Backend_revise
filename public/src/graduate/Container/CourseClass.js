@@ -31,7 +31,7 @@ class CourseClass {
 					case '校':
 						this.credit.basic += course.real_credit;
 						break;
-					case '跨':
+					case '跨': case '外':
 						this.credit.cross += course.real_credit;
 						break;
 				}
