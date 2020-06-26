@@ -22,7 +22,7 @@ function echo(req, res, next) {
 	next();
 }
 
-router.post('/students/graduate/detail',
+router.post('/detail',
 	csrfProtection,
 	getStudentId,
 	syncProfessionalField,
@@ -50,7 +50,7 @@ router.post('/students/graduate/detail',
 	}
 );
 
-router.post('/students/graduate/legalMoveTarget',
+router.post('/legalMoveTarget',
 	csrfProtection,
 	getStudentId,
 	(req, res, next) => {
@@ -72,7 +72,7 @@ router.post('/students/graduate/legalMoveTarget',
 	}
 );
 
-router.get('/students/graduate/check',
+router.get('/check',
 	getStudentId,
 	(req, res, next) => {
 		req.csca.query_list = [
@@ -88,7 +88,7 @@ router.get('/students/graduate/check',
 	}
 );
 
-router.post('/students/graduate/moveCourse',
+router.post('/moveCourse',
 	csrfProtection,
 	getStudentId,
 	syncProfessionalField,
