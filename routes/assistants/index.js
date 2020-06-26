@@ -8,6 +8,7 @@ var graduation = require('./graduation')
 var offset = require('./offset')
 var profile = require('./profile')
 var research = require('./research')
+var data = require('./data')
 
 // prefix of API: /_api/assistants
 router.use('/advisee', advisee)
@@ -15,5 +16,6 @@ router.use('/graduation', graduation)
 router.use('/offset', offset)
 router.use('/profile', profile)
 router.use('/research', research)
+router.use('/data', data)
 
 module.exports = router

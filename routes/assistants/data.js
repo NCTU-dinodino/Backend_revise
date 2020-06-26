@@ -10,9 +10,9 @@ var dataLogShow = dataService.dataLogShow
 var dataLogDelete = dataService.dataLogDelete
 var dataLogDeleteAll = dataService.dataLogDeleteAll
 
-// prefix of this api: /_api/common/data
+// prefix of this api: /_api/assistants/data
 /*下載空白檔案*/
-router.post('/formDownload', csrfProtection, dataFormDownload, function (req, res) {
+router.post('/', csrfProtection, dataFormDownload, function (req, res) {
     res.send(req.download)
 })
 
