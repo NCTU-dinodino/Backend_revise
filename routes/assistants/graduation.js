@@ -70,7 +70,7 @@ router.get('/check',
 	}
 );
 
-router.get('/studentListUpdate',
+router.get('/studentList/edit',
 	getStudentId,
 	(req, res, next) => {
 		req.csca.query_list = [
@@ -97,7 +97,7 @@ router.get('/studentListUpdate',
 	}
 );
 
-router.post('/studentListDownload', csrfProtection, graduateStudentListDownload, function (req, res) {
+router.post('/studentList/download', csrfProtection, graduateStudentListDownload, function (req, res) {
 	res.send(req.studentListDownload);
 });
 
