@@ -15,51 +15,51 @@ var generateSummary = require('../../services/graduation/generateSummary.js');
 var determineValidDestination = require('../../services/graduation/determineValidDestination.js');
 var getGraduateCheck = require('../../services/graduation/getGraduateCheck.js');
 var getGraduateEnglish = require('../../services/graduation/getGraduateEnglish')
-var cosMove = require('../../services/graduation/cosMove')
+var moveCourse = require('../../services/graduation/moveCourse.js')
 
-function echo(req, res, next){
+function echo(req, res, next) {
 	console.log(require('util').inspect(req.csca, false, null, true));
 	next();
 }
 
-// prefix of API: /_api/students/graduation
-router.post('/detail', 
+router.post('/students/graduate/detail',
 	csrfProtection,
-	syncProfessionalField,
 	getStudentId,
+	syncProfessionalField,
 	(req, res, next) => {
 		req.csca.query_list = [
-			{func_name: 'ShowUserAllScore', 	container_name: 'user_all_score',	syntax: req.csca.student_id},
-			{func_name: 'ShowUserOnCos',		container_name:	'user_on_cos',		syntax: req.csca.student_id},
-			// {func_name: 'ShowUserOffset',		container_name:	'user_offset',		syntax: req.csca.student_id},
-			{func_name: 'ShowCosMotionLocate',	container_name:	'cos_motion_locate',	syntax: req.csca.student_id},
-			{func_name: 'ShowCosGroup',		container_name: 'cos_group',		syntax: req.csca.student_id},
-			{func_name: 'ShowGraduateRule',		container_name: 'graduate_rule',	syntax: req.csca.student_id},
-			{func_name: 'ShowUserInfo',		container_name: 'user_info',		syntax: req.csca.student_id}
+			{ func_name: 'ShowUserAllScore', container_name: 'user_all_score', syntax: req.csca.student_id },
+			{ func_name: 'ShowUserOnCos', container_name: 'user_on_cos', syntax: req.csca.student_id },
+			//{func_name: 'ShowUserOffset',		container_name:	'user_offset',		syntax: req.csca.student_id},
+			{ func_name: 'ShowCosMotionLocate', container_name: 'cos_motion_locate', syntax: req.csca.student_id },
+			{ func_name: 'ShowCosGroup', container_name: 'cos_group', syntax: req.csca.student_id },
+			{ func_name: 'ShowGraduateRule', container_name: 'graduate_rule', syntax: req.csca.student_id },
+			{ func_name: 'ShowUserInfo', container_name: 'user_info', syntax: req.csca.student_id }
 		];
 		next();
 	},
 	fetchAndParseData,
 	initContainers,
-	mergeDuplicates, 
-	classifyCourses, 
-	handleExceptions, 
+	mergeDuplicates,
+	classifyCourses,
+	handleExceptions,
 	followRemainingRules,
-	generateSummary, 
+	generateSummary,
 	(req, res, next) => {
 		res.json(req.csca.summary);
 	}
 );
 
-router.post('/legalMoveTarget',
+router.post('/students/graduate/legalMoveTarget',
 	csrfProtection,
 	getStudentId,
 	(req, res, next) => {
 		req.csca.query_list = [
-			{func_name: 'ShowUserAllScore', 	container_name: 'user_all_score',	syntax: req.csca.student_id},
-			{func_name: 'ShowUserOnCos',		container_name:	'user_on_cos',		syntax: req.csca.student_id},
-			{func_name: 'ShowCosGroup',		container_name: 'cos_group',		syntax: req.csca.student_id},
-			{func_name: 'ShowGraduateRule',		container_name: 'graduate_rule',	syntax: req.csca.student_id}
+			{ func_name: 'ShowUserAllScore', container_name: 'user_all_score', syntax: req.csca.student_id },
+			{ func_name: 'ShowUserOnCos', container_name: 'user_on_cos', syntax: req.csca.student_id },
+			{ func_name: 'ShowCosGroup', container_name: 'cos_group', syntax: req.csca.student_id },
+			{ func_name: 'ShowGraduateRule', container_name: 'graduate_rule', syntax: req.csca.student_id },
+			{ func_name: 'ShowUserInfo', container_name: 'user_info', syntax: req.csca.student_id }
 		];
 		next();
 	},
@@ -72,12 +72,12 @@ router.post('/legalMoveTarget',
 	}
 );
 
-router.get('/check',
+router.get('/students/graduate/check',
 	getStudentId,
 	(req, res, next) => {
 		req.csca.query_list = [
-			{func_name: 'ShowUserInfo',		container_name: 'user_info',		syntax: req.csca.student_id},
-			{func_name: 'ShowStudentGraduate',	container_name: 'student_graduate',	syntax: {student_id: req.csca.student_id}}
+			{ func_name: 'ShowUserInfo', container_name: 'user_info', syntax: req.csca.student_id },
+			{ func_name: 'ShowStudentGraduate', container_name: 'student_graduate', syntax: { student_id: req.csca.student_id } }
 		];
 		next();
 	},
@@ -88,13 +88,40 @@ router.get('/check',
 	}
 );
 
+router.post('/students/graduate/moveCourse',
+	csrfProtection,
+	getStudentId,
+	syncProfessionalField,
+	(req, res, next) => {
+		req.csca.query_list = [
+			{ func_name: 'ShowUserAllScore', container_name: 'user_all_score', syntax: req.csca.student_id },
+			{ func_name: 'ShowUserOnCos', container_name: 'user_on_cos', syntax: req.csca.student_id },
+			//{func_name: 'ShowUserOffset',		container_name:	'user_offset',		syntax: req.csca.student_id},
+			{ func_name: 'ShowCosMotionLocate', container_name: 'cos_motion_locate', syntax: req.csca.student_id },
+			{ func_name: 'ShowCosGroup', container_name: 'cos_group', syntax: req.csca.student_id },
+			{ func_name: 'ShowGraduateRule', container_name: 'graduate_rule', syntax: req.csca.student_id },
+			{ func_name: 'ShowUserInfo', container_name: 'user_info', syntax: req.csca.student_id }
+		];
+		next();
+	},
+	fetchAndParseData,
+	initContainers,
+	mergeDuplicates,
+	classifyCourses,
+	handleExceptions,
+	followRemainingRules,
+	moveCourse.moveCourse,
+	(req, res, next) => {
+		res.json(req.csca.moveCourse);
+	}
+);
 
 router.get('/english', getStudentId, getGraduateEnglish, function (req, res) {
 	res.send(req.english);
 });
 
 
-router.post('/resetMove', csrfProtection, cosMove.graduateResetMove, function (req, res) {
+router.post('/resetMove', csrfProtection, moveCourse.resetMoveCourse, function (req, res) {
 	if (req.signal.signal == 1)
 		res.status(204).end();
 	else
@@ -102,9 +129,6 @@ router.post('/resetMove', csrfProtection, cosMove.graduateResetMove, function (r
 	//res.send(req.signal);
 });
 
-router.post('/moveCourse', csrfProtection, cosMove.graduateMoveCourse, function (req, res) {
-	res.send(req.moveCourse);
-});
 
 // TODO: sumary_list
 
