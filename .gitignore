@@ -11,3 +11,5 @@ server.js
 randomVals.js
 build/*
 build/
+db/*
+db/
