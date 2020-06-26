@@ -50,7 +50,7 @@ router.post('/detail',
 	}
 );
 
-router.post('/legalMoveTarget',
+router.post('/courseMove/target',
 	csrfProtection,
 	getStudentId,
 	(req, res, next) => {
@@ -88,7 +88,7 @@ router.get('/check',
 	}
 );
 
-router.post('/moveCourse',
+router.post('/courseMove',
 	csrfProtection,
 	getStudentId,
 	syncProfessionalField,
@@ -121,7 +121,7 @@ router.get('/english', getStudentId, getGraduateEnglish, function (req, res) {
 });
 
 
-router.post('/resetMove', csrfProtection, moveCourse.resetMoveCourse, function (req, res) {
+router.post('/courseMove/reset', csrfProtection, moveCourse.resetMoveCourse, function (req, res) {
 	if (req.signal.signal == 1)
 		res.status(204).end();
 	else
