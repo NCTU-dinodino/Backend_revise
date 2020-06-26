@@ -1,5 +1,3 @@
-const { query } = require("express");
-
 var query = require('../../db/msql')
 
 /* 列出該年級所有學生的畢業預審 */
