@@ -97,24 +97,24 @@ router.get('/studentListUpdate',
 	}
 );
 
-router.post('/assistants/graduate/studentListDownload', csrfProtection, graduateStudentListDownload, function (req, res) {
+router.post('/studentListDownload', csrfProtection, graduateStudentListDownload, function (req, res) {
 	res.send(req.studentListDownload);
 });
 
-router.post('/assistants/graduate/studentList', graduateStudentList, function (req, res) {
+router.post('/studentList', graduateStudentList, function (req, res) {
 	res.send(req.studentList);
 });
 
-router.get('/assistants/graduate/english', getStudentId, getGraduateEnglish, function (req, res) {
+router.get('/english', getStudentId, getGraduateEnglish, function (req, res) {
 	res.send(req.english);
 });
 
 
-router.post('/assistants/graduate/gradeStudentId', csrfProtection, getGradeStudentId, function (req, res) {
+router.post('/gradeStudentId', csrfProtection, getGradeStudentId, function (req, res) {
 	res.send(req.studentId);
 });
 
-router.post('/assistants/graduate/graduateCheck', postGraduateCheck, function (req, res) {
+router.post('/graduateCheck', postGraduateCheck, function (req, res) {
 	res.send({ msg: 1 });
 });
 
