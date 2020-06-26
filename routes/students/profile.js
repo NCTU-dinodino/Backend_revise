@@ -9,7 +9,6 @@ var getStudentId = require('../../middleware/getStudentId').getStudentId.student
 
 // prefix of this api: /_api/students/profile
 router.get('/', getStudentId, function (req, res) {
-    console.log('test for students/profile')
 
     if (req.session.profile) {
 
