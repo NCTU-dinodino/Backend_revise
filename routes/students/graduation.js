@@ -14,6 +14,8 @@ var followRemainingRules = require('../../services/graduation/followRemainingRul
 var generateSummary = require('../../services/graduation/generateSummary.js');
 var determineValidDestination = require('../../services/graduation/determineValidDestination.js');
 var getGraduateCheck = require('../../services/graduation/getGraduateCheck.js');
+var getGraduateEnglish = require('../../services/graduation/getGraduateEnglish')
+var cosMove = require('../../services/graduation/cosMove')
 
 function echo(req, res, next){
 	console.log(require('util').inspect(req.csca, false, null, true));
@@ -85,5 +87,25 @@ router.get('/check',
 		res.json(req.csca.check_state);
 	}
 );
+
+
+router.get('/english', getStudentId, getGraduateEnglish, function (req, res) {
+	res.send(req.english);
+});
+
+
+router.post('/resetMove', csrfProtection, cosMove.graduateResetMove, function (req, res) {
+	if (req.signal.signal == 1)
+		res.status(204).end();
+	else
+		res.status(403).end();
+	//res.send(req.signal);
+});
+
+router.post('/moveCourse', csrfProtection, cosMove.graduateMoveCourse, function (req, res) {
+	res.send(req.moveCourse);
+});
+
+// TODO: sumary_list
 
 module.exports = router;
