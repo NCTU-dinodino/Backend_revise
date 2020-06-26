@@ -13,11 +13,11 @@ router.post('/', csrfProtection, showApplyPeriod, function (req, res) {
     res.send(req.showApplyPeriod);
 });
 
-router.post('/create', csrfProtection, createApplyPeriod, function (req, res) {
+router.post('/new', csrfProtection, createApplyPeriod, function (req, res) {
     res.status(req.signal).end();
 });
 
-router.post('/set', csrfProtection, setApplyPeriod, function (req, res) {
+router.post('/edit', csrfProtection, setApplyPeriod, function (req, res) {
     res.status(req.signal).end();
 });
 
