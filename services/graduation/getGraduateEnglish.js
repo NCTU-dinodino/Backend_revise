@@ -1,4 +1,4 @@
-var query = require('../db/msql');
+var query = require('../../db/msql');
 
 /* 回傳該學生英文狀態 */
 function getGraduateEnglish(req, res, next) {
