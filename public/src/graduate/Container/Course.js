@@ -55,15 +55,15 @@ class Course {
 
 		return split_course;
 	}
-/*
+
 	copy(){
-		let result = Object.assign({}, this);
-		result.score = Object.assign({}, this.score);
-		result.score_level = Object.assign({}, this.score_level);
-		result.pass_fail = Object.assign({}, this.pass_fail);
+		let result = Object.assign(Course(), this);
+		result.data = {}
+		for(let key in Object.keys(this.data))
+			result.data[key] = Object.assign({}, this.data[key]);
 		return result;
 	}
-*/
+
 	amount() {
 		return Object.keys(this.data).length;
 	}

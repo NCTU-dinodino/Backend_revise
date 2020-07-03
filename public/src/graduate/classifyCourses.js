@@ -48,7 +48,7 @@ function classifyCoursesByDefault(req) {
 	Object.values(req.csca.courses).forEach((course) => {
 		for (let i = 0; i < class_list_allow_duplicants.length; i++) {
 			if (class_list_allow_duplicants[i].valid(course, req)) {
-				req.csca.classes[class_list_allow_duplicants[i]['class']].courses.push(course);
+				req.csca.classes[class_list_allow_duplicants[i]['class']].courses.push(course.copy());
 			}
 		}
 	});
