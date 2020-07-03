@@ -57,7 +57,7 @@ class Course {
 	}
 
 	copy(){
-		let result = Object.assign(Course(), this);
+		let result = Object.assign(new Course(), this);
 		result.data = {}
 		for(let key in Object.keys(this.data))
 			result.data[key] = Object.assign({}, this.data[key]);
