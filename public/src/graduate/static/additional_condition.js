@@ -45,3 +45,7 @@ module.exports.merge_exceptions = [
 	'GEC1098',//文化
 	'GEC3098' //公民
 ]
+
+module.exports.same_courses_with_diff_codes = [
+	['DCP1218', 'DCP1258']
+];
